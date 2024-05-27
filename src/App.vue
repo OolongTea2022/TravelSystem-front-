@@ -28,16 +28,16 @@
           <span>系统首页</span>
         </el-menu-item>
 
-        <el-sub-menu index="/test">
+        <el-sub-menu index="">
           <template #title>
             <el-icon><Menu /></el-icon>
             <span>信息管理</span>
           </template>
           <el-menu-item-group title="信息表 ">
-            <el-menu-item index="/test">旅游路线</el-menu-item>
-            <el-menu-item index="/ApplyBookView">旅游申请</el-menu-item>
-            <el-menu-item index="2-3">旅游申请书</el-menu-item>
-            <el-menu-item index="2-4">待定</el-menu-item>
+            <el-menu-item index="/PathBookView">旅游路线</el-menu-item>
+            <el-menu-item index="/OrderInfoView">旅游申请</el-menu-item>
+            <el-menu-item index="/ApplyBookView">旅游申请书</el-menu-item>
+            <el-menu-item index="/FinanceBookView">财务报表</el-menu-item>
           </el-menu-item-group>
 
         </el-sub-menu>

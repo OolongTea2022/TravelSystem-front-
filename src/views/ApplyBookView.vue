@@ -1,3 +1,6 @@
+<!--未开始-->
+<!-- //TODO 待改 -->
+<!-- //TODO 表格结构要改！！！ -->
 <template>
 
     <div>
@@ -54,8 +57,10 @@ const tableData = ref([]);
 //TODO 尝试接收后端order_info数据库代码
 function loader(){
     request.get("/pathbook/page?pageNum=0&pageSize=2").then(res=>{
-        if(res.code === '0'){
-            console.log(res.data());
+        console.log(res);
+
+        if(res.code === 0){
+            console.log(res.data);
         } else {
             console.log("wrong!!!!!");
         }

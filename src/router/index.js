@@ -1,6 +1,6 @@
 // 引入需要的模块
 import { createRouter, createWebHistory } from "vue-router";
-import HV from "../views/HomeView.vue"
+
 import component from "element-plus/es/components/tree-select/src/tree-select-option.mjs";
 
 
@@ -9,7 +9,7 @@ const routes = [
   {
     //默认展示，这是主页面路由必须加斜杠 /
     path: "/",
-    component: HV,
+    component: () => import("../views/HomeView.vue"),
   },
   {
     path: "/hello",
@@ -17,15 +17,26 @@ const routes = [
     component: () => import("../components/HelloWorld.vue"),
   },
   {
-    path:"/test",
-    component:()=>import("../views/test.vue"),
+    path: "/test",
+    component: () => import("../views/test.vue"),
   },
 
   {
-    path:"/ApplyBookView",
-    component:()=>import("../views/ApplyBookView.vue"),
+    path: "/ApplyBookView",
+    component: () => import("../views/ApplyBookView.vue"),
   },
-
+  {
+    path: "/FinanceBookView",
+    component: () => import("../views/FinanceBookView.vue"),
+  },
+  {
+    path: "/OrderInfoView",
+    component: () => import("../views/OrderInfoView.vue"),
+  },
+  {
+    path: "/PathBookView",
+    component: () => import("../views/PathBookView.vue"),
+  },
 
 ];
 
@@ -34,6 +45,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
- 
+
 // 导出路由
 export default router;
