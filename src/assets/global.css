@@ -1,0 +1,12 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/*把所有元素变成盒装模型*/
+* {
+    box-sizing: border-box;
+}
+
+
