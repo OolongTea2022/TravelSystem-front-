@@ -7,6 +7,7 @@
             <el-button type="success" style="margin-left: 5px;">Add</el-button>
 
         </div>
+
         <div>
             <el-table :data="tableData" style="width: 100%">
                 <el-table-column prop="date" label="Date" width="180" />
@@ -44,29 +45,28 @@
 
 <script setup>
 import { ref } from 'vue';
+import request from "../utils/request";
 
 const input = ref("");
 
-const tableData = [
-    {
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-04',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-01',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-]
+const tableData = ref([]);
+
+//TODO 尝试接收后端order_info数据库代码
+function loader(){
+    request.get("/pathbook/page?pageNum=0&pageSize=2").then(res=>{
+        if(res.code === '0'){
+            console.log(res.data());
+        } else {
+            console.log("wrong!!!!!");
+        }
+
+    })
+
+};
+
+loader();
+
+
+
+
 </script>
