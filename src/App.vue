@@ -35,7 +35,7 @@
           </template>
           <el-menu-item-group title="信息表 ">
             <el-menu-item index="/PathBookView">旅游路线</el-menu-item>
-            <el-menu-item index="/OrderInfoView">旅游申请</el-menu-item>
+            <el-menu-item index="/ApplyInfoView">旅游申请</el-menu-item>
             <el-menu-item index="/ApplyBookView">旅游申请书</el-menu-item>
             <el-menu-item index="/FinanceBookView">财务报表</el-menu-item>
           </el-menu-item-group>

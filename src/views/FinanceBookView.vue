@@ -70,30 +70,6 @@ const pageSize = ref(10);
 const tableData = ref([]);
 const param = ref("");
 
-// //TODO 记得改为搜索函数
-// function loader() {
-//     let url = "/pathbook/page?pageNum=" + pageNumber.value 
-//     + "&pageSize=" + pageSize.value;
-
-//     request.get(url).then(res => {
-//         console.log(res);
-
-//         if (res.code === 0) {
-//             totalNumber.value = res.data.total;
-//             tableData.value = res.data.records;
-
-//             console.log(totalNumber.value);
-//             console.log(tableData.value);
-
-//         } else {
-//             console.log(res.msg);
-//         }
-
-//     })
-
-// };
-
-// loader();
 
 function search() {
     let url = "/financebook/page";

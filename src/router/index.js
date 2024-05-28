@@ -30,8 +30,8 @@ const routes = [
     component: () => import("../views/FinanceBookView.vue"),
   },
   {
-    path: "/OrderInfoView",
-    component: () => import("../views/OrderInfoView.vue"),
+    path: "/ApplyInfoView",
+    component: () => import("../views/ApplyInfoView.vue"),
   },
   {
     path: "/PathBookView",

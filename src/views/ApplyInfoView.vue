@@ -1,6 +1,6 @@
-<!-- //TODO 待改 -->
 
 <!-- //TODO 增删改 -->
+
 <template>
 
     <div>
@@ -11,44 +11,35 @@
             <el-button type="primary" style="margin-left: 5px;" @click="reset()">Reset</el-button>
 
             <el-button type="success" style="margin-left: 5px;">Add</el-button>
-
         </div>
 
         <div>
             <el-table :data="tableData" style="width: 100%">
                 <!-- <el-table-column prop="id" label="ID" width="50" /> -->
 
-                
-                <el-table-column prop="applyInfoId" label="申请ID" width="100" />
+                <el-table-column prop="applyBookId" fixed label="申请书ID" width="100" /><!--TODO点击展示申请书对话框-->
 
-                <el-table-column prop="tourCode" label="旅游团代码" width="180" />
-                <el-table-column prop="departDate" label="出发日期" width="180" />
+                <el-table-column prop="principalName" label="姓名" width="180" />
                 
-                <el-table-column prop="name" label="姓名" width="180" />
-                <el-table-column prop="gender" label="性别" width="180" />
-                
-                <el-table-column prop="birthday" label="出生日期" width="180" />
-                <el-table-column prop="phone" label="电话号码" width="180" />
-                
-                <el-table-column prop="address" label="联系地址" width="180" />
-                <el-table-column prop="email" label="Email" width="180" />
-                
-                <el-table-column prop="postalCode" label="邮政编码" width="180" />
-                <el-table-column prop="nameVice" label="紧急联系人姓名" width="180" />
-                
-                <el-table-column prop="relationship" label="紧急联系人与本人关系" width="180" />
-                <el-table-column prop="addressVice" label="紧急联系人地址" width="180" />
 
-                <el-table-column prop="phoneVice" label="紧急联系人电话" width="180" />
-                <el-table-column prop="updateTime" label="数据更新时间" width="180" />
+                <el-table-column prop="deposit" label="订金" width="180" />
+
+                <el-table-column prop="totalPrice" label="总价" width="180" />
+
+                <el-table-column prop="depositStatus" label="订金状态（0-未交订金, 1-已交订金）" width="180" />
+                <el-table-column prop="cancelStatus" label="申请取消状体（0-未取消, 1-已取消）" width="180" />
 
 
+                <el-table-column prop="payDeadline" label="支付截止日期" width="180" />
+                <el-table-column prop="paymentSendDate" label="支付截止日期" width="180" />
+
+                <el-table-column prop="balanceStatus" label="余款支付情况（0-未支付   1-已支付）" width="180" />
 
 
-                <el-table-column label="Operation" width="180">
+                <!-- <el-table-column label="Operation" width="180">
                     <el-button type="primary">Edit</el-button>
                     <el-button type="danger">Delete</el-button>
-                </el-table-column>
+                </el-table-column> -->
             </el-table>
 
         </div>
@@ -94,15 +85,17 @@ const tableData = ref([]);
 const param = ref("");
 
 
-
 function search() {
-    let url = "/applybook/page";
+    let url = "/applyinfo/page";
     request.post(url,{
         pageNum:pageNumber.value,
         pageSize:pageSize.value,
         param:param.value,
 
     }).then(res=>{
+
+        console.log(res);
+        
         if(res.code =='0'){
             totalNumber.value = res.data.total;
             tableData.value = res.data.records;

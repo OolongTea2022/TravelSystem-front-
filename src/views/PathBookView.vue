@@ -1,12 +1,14 @@
-<!-- //TODO 新增表单，更改表单 -->
+<!-- //TODO 增删改 -->
 <template>
 
     <div>
         <div style="margin-bottom: 10px;">
-            <el-input v-model="param" style="width: 240px" placeholder="请输入路线编号关键字" @keyup.enter="search()"/>
-            <el-button type="warning" style="margin-left: 5px;"  @click="search()">Search</el-button>
-            <el-button type="success" style="margin-left: 5px;">Add</el-button>
+            <el-input v-model="param" style="width: 240px" placeholder="请输入路线编号关键字" @keyup.enter="search()" />
+            <el-button type="warning" style="margin-left: 5px;" @click="search()">Search</el-button>
+
             <el-button type="primary" style="margin-left: 5px;" @click="reset()">Reset</el-button>
+
+            <el-button type="success" style="margin-left: 5px;" >Add</el-button>
 
         </div>
 
@@ -22,7 +24,7 @@
                 <el-table-column prop="updateTime" label="数据更新时间" width="180" />
 
 
-                <el-table-column label="Operation">
+                <el-table-column label="Operation" width="180">
                     <el-button type="primary">Edit</el-button>
                     <el-button type="danger">Delete</el-button>
                 </el-table-column>
@@ -33,17 +35,13 @@
 
 
         <div style="margin-top: 10px;">
-            <el-pagination 
-            v-model:current-page=pageNumber
-            v-model:page-size=pageSize
-            :page-sizes="[5, 10, 50, 100,400]" 
-            :small="small" :disabled="disabled" 
-            :background="background"
-            layout="total, sizes, prev, pager, next, jumper" 
-            :total=totalNumber 
-            @size-change="search()"
-            @current-change="search()" />
-        </div>  
+            <el-pagination v-model:current-page=pageNumber v-model:page-size=pageSize
+                :page-sizes="[5, 10, 50, 100, 400]" :small="small" :disabled="disabled" :background="background"
+                layout="total, sizes, prev, pager, next, jumper" :total=totalNumber @size-change="search()"
+                @current-change="search()" />
+        </div>
+
+
 
     </div>
 
@@ -69,6 +67,8 @@ const pageSize = ref(10);
 
 const tableData = ref([]);
 const param = ref("");
+
+
 
 // //TODO 记得改为搜索函数
 // function loader() {
@@ -97,16 +97,16 @@ const param = ref("");
 
 function search() {
     let url = "/pathbook/page";
-    request.post(url,{
-        pageNum:pageNumber.value,
-        pageSize:pageSize.value,
-        param:param.value,
+    request.post(url, {
+        pageNum: pageNumber.value,
+        pageSize: pageSize.value,
+        param: param.value,
 
-    }).then(res=>{
-        if(res.code =='0'){
+    }).then(res => {
+        if (res.code == '0') {
             totalNumber.value = res.data.total;
             tableData.value = res.data.records;
-        }else{
+        } else {
 
         }
     })
@@ -115,10 +115,12 @@ function search() {
 
 
 
-function reset(){
+function reset() {
     param.value = "";
     search();
 }
+
+
 
 search();
 
