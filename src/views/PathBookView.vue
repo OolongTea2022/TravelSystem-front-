@@ -13,7 +13,7 @@
         </div>
 
         <div>
-            <el-table :data="tableData" style="width: 100%">
+            <el-table :data="tableData" style="width: 100%" :row-style="tableRowStyleName">
                 <el-table-column fixed prop="pathNumber" label="路线编号" width="180" />
                 <el-table-column prop="path" label="路径" width="180" />
                 <el-table-column prop="adultPrice" label="成人价格" width="180" />
@@ -229,10 +229,28 @@ function handleEdit(obj){
 
     dialogFormVisible.value = true;
 
-    
-
 }
+
+function tableRowStyleName({row,rowIndex}){
+    if(row.deleteStatus == 1){
+        // console.log(rowIndex);
+        return {
+            "--el-table-tr-bg-color": "rgb(126 84 84 / 60%)",
+        }
+    }
+};
+
 
 handleSearch();
 
 </script>
+
+
+<style scoped>
+
+
+
+</style>
+
+
+
