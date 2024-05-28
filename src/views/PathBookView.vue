@@ -14,19 +14,22 @@
 
         <div>
             <el-table :data="tableData" style="width: 100%">
-                <el-table-column prop="pathNumber" label="路线编号" width="180" />
+                <el-table-column fixed prop="pathNumber" label="路线编号" width="180" />
                 <el-table-column prop="path" label="路径" width="180" />
                 <el-table-column prop="adultPrice" label="成人价格" width="180" />
 
                 <el-table-column prop="childPrice" label="儿童价格" width="180" />
                 <el-table-column prop="discount" label="打折" width="180" />
 
+                <el-table-column prop="deleteStatus" label="是否逻辑删除（0存在，1删除）" width="180" />
+                <el-table-column prop="lastVersionId" label="以前版本ID" width="180" />
+
                 <el-table-column prop="updateTime" label="数据更新时间" width="180" />
 
 
-                <el-table-column label="Operation" width="180">
+                <el-table-column label="Operation" width="130">
                     <el-button type="primary" @click="handleEdit()">Edit</el-button>
-                    <el-button type="danger" @click="handleDelete()">Delete</el-button>
+                    <!-- <el-button type="danger" @click="handleDelete()">Delete</el-button> -->
                 </el-table-column>
             </el-table>
 
@@ -80,7 +83,7 @@
                 <template #footer>
                     <div class="dialog-footer">
                         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-                        <el-button type="primary" @click="dialogFormVisible = false,handleConfirm()"> Confirm
+                        <el-button type="primary" @click="dialogFormVisible = false, handleConfirm()"> Confirm
                         </el-button>
                     </div>
                 </template>
@@ -116,12 +119,12 @@ const param = ref("");
 //add对话框参数
 const dialogFormVisible = ref(false);
 const dialogFormData = ref({
-    "adultPrice": 0,
-    "childPrice": 0,
-    "discount": "string",
-    "id": 0,
-    "path": "string",
-    "pathNumber": "string"
+    "adultPrice": null,
+    "childPrice": null,
+    "discount": "",
+    "id": null,
+    "path": "",
+    "pathNumber": ""
 });
 
 const formLabelWidth = '20%';
@@ -180,8 +183,17 @@ function handleReset() {
 
 function handleAdd() {
 
+    dialogFormData.value = {
+        "adultPrice": null,
+        "childPrice": null,
+        "discount": "",
+        "id": null,
+        "path": "",
+        "pathNumber": ""
+    };
+
     dialogFormVisible.value = true;
-    
+
 }
 
 function handleConfirm() {

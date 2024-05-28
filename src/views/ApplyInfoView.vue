@@ -31,15 +31,24 @@
 
 
                 <el-table-column prop="payDeadline" label="支付截止日期" width="180" />
-                <el-table-column prop="paymentSendDate" label="支付截止日期" width="180" />
+                <el-table-column prop="paymentSendDate" label="余款发送日期" width="180" />
 
                 <el-table-column prop="balanceStatus" label="余款支付情况（0-未支付   1-已支付）" width="180" />
 
+                <el-table-column prop="depositRatio" label="订金比例" width="180" />
+                <el-table-column prop="updateTime" label="数据更新时间" width="180" />
 
-                <!-- <el-table-column label="Operation" width="180">
-                    <el-button type="primary">Edit</el-button>
-                    <el-button type="danger">Delete</el-button>
-                </el-table-column> -->
+
+
+                <el-table-column label="Operation" width="350px">
+                    <!-- <el-button type="primary">Edit</el-button> -->
+
+                    <el-button type="info">PayDeposit</el-button>
+                    <el-button type="info">PayBalance</el-button>
+
+                    <el-button type="danger">Cancel</el-button>
+                    
+                </el-table-column>
             </el-table>
 
         </div>

@@ -19,7 +19,7 @@
                 <el-table-column prop="type" label="类型（0: 订金支付, 1: 余款支付, 2: 退款）" width="180" />
 
                 <el-table-column prop="updateTime" label="生成时间" width="180" />
-                <el-table-column prop="orderInfoId" label="对应订单ID" width="180" />
+                <el-table-column prop="applyInfoId" label="对应订单ID" width="180" />
 
 
                 <!-- <el-table-column label="Operation">
