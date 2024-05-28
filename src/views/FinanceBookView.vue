@@ -1,6 +1,5 @@
-
-
 <!-- //TODO 改placeholder -->
+<!-- //TODO 后端确定关键字并修改查询接口 -->
 <template>
 
     <div>
@@ -83,7 +82,8 @@ function handleSearch() {
             totalNumber.value = res.data.total;
             tableData.value = res.data.records;
         }else{
-
+            alert("财务报表获取失败！！！");
+            console.log("财务报表获取失败！！！")
         }
     })
 
