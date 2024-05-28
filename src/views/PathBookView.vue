@@ -27,9 +27,15 @@
                 <el-table-column prop="updateTime" label="数据更新时间" width="180" />
 
 
+
                 <el-table-column label="Operation" width="130">
-                    <el-button type="primary" @click="handleEdit()">Edit</el-button>
-                    <!-- <el-button type="danger" @click="handleDelete()">Delete</el-button> -->
+
+                    <template v-slot="{row}">
+                        <el-button type="primary" @click="handleEdit(row)">Edit</el-button>
+                        <!-- <el-button type="danger" @click="handleDelete()">Delete</el-button> -->
+                    </template>
+
+
                 </el-table-column>
             </el-table>
 
@@ -99,7 +105,7 @@
 </template>
 
 <script setup>
-import { ref, setTransitionHooks } from 'vue';
+import { ref } from 'vue';
 
 import request from "../utils/request";
 
@@ -164,6 +170,9 @@ function handleSearch() {
         param: param.value,
 
     }).then(res => {
+
+        console.log(res);
+        
         if (res.code == '0') {
             totalNumber.value = res.data.total;
             tableData.value = res.data.records;
@@ -199,20 +208,30 @@ function handleAdd() {
 function handleConfirm() {
     let url = "/pathbook/save";
 
-    console.log(dialogFormData.value);
-
     request.post(url, dialogFormData.value).then(res => {
         if (res.code == '0') {
 
             console.log("confirm成功提交");
-            search();
+            handleSearch();
 
         } else {
+            alert("提交无效，请注意输入是否有误，或所更改的路径是否逻辑存在！！！");
             console.log("confirm提交有问题！！！");
         }
     })
+
+
 }
 
+
+function handleEdit(obj){
+    Object.assign(dialogFormData.value,obj);
+
+    dialogFormVisible.value = true;
+
+    
+
+}
 
 handleSearch();
 
