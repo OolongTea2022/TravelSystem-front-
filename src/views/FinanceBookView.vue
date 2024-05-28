@@ -5,10 +5,10 @@
 
     <div>
         <div style="margin-bottom: 10px;">
-            <el-input v-model="param" style="width: 240px" placeholder="请输入订单关键字" @keyup.enter="search()"/><!--TODO根据后端更改placeholder-->
-            <el-button type="warning" style="margin-left: 5px;"  @click="search()">Search</el-button>
+            <el-input v-model="param" style="width: 240px" placeholder="请输入订单关键字" @keyup.enter="handleSearch()"/><!--TODO根据后端更改placeholder-->
+            <el-button type="warning" style="margin-left: 5px;"  @click="handleSearch()">Search</el-button>
             <!-- <el-button type="success" style="margin-left: 5px;">Add</el-button> -->
-            <el-button type="primary" style="margin-left: 5px;" @click="reset()">Reset</el-button>
+            <el-button type="primary" style="margin-left: 5px;" @click="handleReset()">Reset</el-button>
 
         </div>
 
@@ -41,8 +41,8 @@
             :background="background"
             layout="total, sizes, prev, pager, next, jumper" 
             :total=totalNumber 
-            @size-change="search()"
-            @current-change="search()" />
+            @size-change="handleSearch()"
+            @current-change="handleSearch()" />
         </div>  
 
     </div>
@@ -71,7 +71,7 @@ const tableData = ref([]);
 const param = ref("");
 
 
-function search() {
+function handleSearch() {
     let url = "/financebook/page";
     request.post(url,{
         pageNum:pageNumber.value,
@@ -91,11 +91,11 @@ function search() {
 
 
 
-function reset(){
+function handleReset(){
     param.value = "";
     search();
 }
 
-search();
+handleSearch();
 
 </script>

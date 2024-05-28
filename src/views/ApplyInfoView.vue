@@ -5,10 +5,10 @@
 
     <div>
         <div style="margin-bottom: 10px;">
-            <el-input v-model="param" style="width: 240px" placeholder="请输入申请人姓名" @keyup.enter="search()"/><!--TODO根据后端更改placeholder-->
-            <el-button type="warning" style="margin-left: 5px;"  @click="search()">Search</el-button>
+            <el-input v-model="param" style="width: 240px" placeholder="请输入申请人姓名" @keyup.enter="handleSearch()"/><!--TODO根据后端更改placeholder-->
+            <el-button type="warning" style="margin-left: 5px;"  @click="handleSearch()">Search</el-button>
 
-            <el-button type="primary" style="margin-left: 5px;" @click="reset()">Reset</el-button>
+            <el-button type="primary" style="margin-left: 5px;" @click="handleReset()">Reset</el-button>
 
             <el-button type="success" style="margin-left: 5px;">Add</el-button>
         </div>
@@ -17,9 +17,9 @@
             <el-table :data="tableData" style="width: 100%">
                 <!-- <el-table-column prop="id" label="ID" width="50" /> -->
 
-                <el-table-column prop="applyBookId" fixed label="申请书ID" width="100" /><!--TODO点击展示申请书对话框-->
+                <!-- <el-table-column prop="applyBookId" fixed label="申请书ID" width="100" /> -->
 
-                <el-table-column prop="principalName" label="姓名" width="180" />
+                <el-table-column fixed prop="principalName" label="姓名" width="180" />
                 
 
                 <el-table-column prop="deposit" label="订金" width="180" />
@@ -55,8 +55,8 @@
             :background="background"
             layout="total, sizes, prev, pager, next, jumper" 
             :total=totalNumber 
-            @size-change="search()"
-            @current-change="search()" />
+            @size-change="handleSearch()"
+            @current-change="handleSearch()" />
         </div>  
 
     </div>
@@ -85,7 +85,7 @@ const tableData = ref([]);
 const param = ref("");
 
 
-function search() {
+function handleSearch() {
     let url = "/applyinfo/page";
     request.post(url,{
         pageNum:pageNumber.value,
@@ -95,7 +95,7 @@ function search() {
     }).then(res=>{
 
         console.log(res);
-        
+
         if(res.code =='0'){
             totalNumber.value = res.data.total;
             tableData.value = res.data.records;
@@ -108,11 +108,11 @@ function search() {
 
 
 
-function reset(){
+function handleReset(){
     param.value = "";
-    search();
+    handleSearch();
 }
 
-search();
+handleSearch();
 
 </script>
