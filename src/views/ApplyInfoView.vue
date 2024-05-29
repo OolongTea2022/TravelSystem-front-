@@ -31,24 +31,28 @@
 
 
                 <el-table-column prop="payDeadline" label="支付截止日期" width="180" />
-                <el-table-column prop="paymentSendDate" label="余款发送日期" width="180" />
+                <el-table-column prop="paymentSendDate" label="余款单发送日期" width="180" />
 
                 <el-table-column prop="balanceStatus" label="余款支付情况（0-未支付   1-已支付）" width="180" />
 
                 <el-table-column prop="depositRatio" label="订金比例" width="180" />
+                <el-table-column prop="departDate" label="出发日期" width="180" />
+
                 <el-table-column prop="updateTime" label="数据更新时间" width="180" />
 
 
 
-                <el-table-column label="Operation" width="350px">
+                <el-table-column label="Operation" width="500px">
 
-                    <template v-slot="{row}">
-                                            <!-- <el-button type="primary">Edit</el-button> -->
+                    <template v-slot="{ row }">
+                        <!-- <el-button type="primary">Edit</el-button> -->
 
-                    <el-button type="info" @click="handlePayDeposit(row)">PayDeposit</el-button>
-                    <el-button type="info" @click="handlePayBalance(row)">PayBalance</el-button>
+                        <el-button type="info" @click="handlePayDeposit(row)">PayDeposit</el-button>
+                        <el-button type="info" @click="handlePayBalance(row)">PayBalance</el-button>
 
-                    <el-button type="danger" @click="handleCancel(row)">Cancel</el-button>
+                        <el-button type="success" @click="handleSendPayment(row)">SendPayment</el-button>
+
+                        <el-button type="danger" @click="handleCancel(row)">Cancel</el-button>
 
                     </template>
 
@@ -215,11 +219,11 @@ function handleConfirm() {
 
 }
 
-function handlePayDeposit(obj){
+function handlePayDeposit(obj) {
     let url = "/applyinfo/paydeposit" + "?id=" + obj.id;
 
-    request.put(url).then(res=>{
-        if(res.code == '0'){
+    request.put(url).then(res => {
+        if (res.code == '0') {
             console.log("paydeposit成功提交");
             handleSearch();
         } else {
@@ -230,11 +234,11 @@ function handlePayDeposit(obj){
 
 }
 
-function handlePayBalance(obj){
+function handlePayBalance(obj) {
     let url = "/applyinfo/paybalance" + "?id=" + obj.id;
 
-    request.put(url).then(res=>{
-        if(res.code == '0'){
+    request.put(url).then(res => {
+        if (res.code == '0') {
             console.log("paybalance成功提交");
             handleSearch();
         } else {
@@ -244,13 +248,13 @@ function handlePayBalance(obj){
     })
 }
 
-function handleCancel(obj){
+function handleCancel(obj) {
 
-    let url = "/applyinfo/cancel" + "?id="+obj.id;
+    let url = "/applyinfo/cancel" + "?id=" + obj.id;
 
 
-    request.put(url).then(res=>{
-        if(res.code == '0'){
+    request.put(url).then(res => {
+        if (res.code == '0') {
             console.log("cancel成功提交");
             handleSearch();
         } else {
@@ -261,8 +265,8 @@ function handleCancel(obj){
 };
 
 
-function tableRowStyleName({row,rowIndex}){
-    if(row.cancelStatus == 1){
+function tableRowStyleName({ row, rowIndex }) {
+    if (row.cancelStatus == 1) {
         // console.log(rowIndex);
         return {
             "--el-table-tr-bg-color": "rgb(126 84 84 / 60%)",
@@ -270,6 +274,20 @@ function tableRowStyleName({row,rowIndex}){
     }
 };
 
+function handleSendPayment(obj) {
+    let url = "/applyinfo/sendpayment" + "?" + "id=" + obj.id;
+
+    request.put(url).then(res =>{
+        if(res.code == '0'){
+            console.log("sendpayment成功提交");
+            handleSearch();
+        } else {
+            alert("发送失败！！！");
+            console.log("sendpayment有问题！");
+        }
+    })
+
+}
 
 handleSearch();
 
