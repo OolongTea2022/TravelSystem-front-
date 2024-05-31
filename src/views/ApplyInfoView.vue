@@ -99,7 +99,7 @@
                     </el-form-item>
 
                     <el-form-item label="出发日期" :label-width="formLabelWidth">
-                        <el-input v-model="dialogFormData.departureDate" autocomplete="off" />
+                        <el-input v-model="dialogFormData.departDate" autocomplete="off" />
                     </el-form-item>
 
                 </el-form>
@@ -194,7 +194,7 @@ function handleAdd() {
         "adultNumber": null,
         "childNumber": null,
         "pathId": null,
-        "departureDate": ""
+        "departDate": ""
     };
 
     dialogFormVisible.value = true;
