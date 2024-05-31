@@ -19,6 +19,8 @@
 
                 <!-- <el-table-column prop="applyBookId" fixed label="申请书ID" width="100" /> -->
 
+                <el-table-column fixed prop="id" label="ID" width="50" />
+
                 <el-table-column fixed prop="principalName" label="姓名" width="180" />
 
 

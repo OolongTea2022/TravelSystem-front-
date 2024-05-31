@@ -1,13 +1,10 @@
 import axios from 'axios'
 
-
-
 //创建一个axios对象出来
 const request = axios.create({
     baseURL: "http://localhost:8080",
     timeout: 5000,
 });
-
 
 //request拦截器
 request.interceptors.request.use(config => {
@@ -32,9 +29,7 @@ request.interceptors.response.use(
     error => {
         console.log('err' + error);
         return Promise.reject(error);
-    }
-)
-
+})
 
 export default request;
 
