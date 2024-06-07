@@ -16,10 +16,6 @@ const routes = [
     //路由懒加载
     component: () => import("../components/HelloWorld.vue"),
   },
-  {
-    path: "/test",
-    component: () => import("../views/test.vue"),
-  },
 
   {
     path: "/ApplyBookView",
