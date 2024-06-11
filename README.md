@@ -1,7 +1,9 @@
-# Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Vue 3 + Vite + Element Plus
 
-## Recommended IDE Setup
+与朋友结对编程完成一个旅游管理系统框架，库中为项目的前端部分。
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+这是一个旅游管理系统的前端界面，其中主要包含了旅游路线，旅游申请，旅游申请书，财务报表四个表格的展示与更改。
+
+后端代码在这里[https://github.com/Akierowan/TravelSystem](https://github.com/Akierowan/TravelSystem)
+
